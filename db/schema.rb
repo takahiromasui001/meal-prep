@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2022_08_14_011756) do
   create_table "meal_prep_schedule_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.boolean "prepared", null: false
+    t.boolean "prepared", default: false, null: false
     t.integer "meal_type", null: false
     t.bigint "meal_prep_schedule_id"
     t.datetime "created_at", null: false
