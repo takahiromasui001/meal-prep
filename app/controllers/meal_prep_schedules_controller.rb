@@ -16,9 +16,10 @@ class MealPrepSchedulesController < ApplicationController
   end
 
   def create
-    @meal_prep_schedule = MealPrepSchedule.new(meal_prep_schedule_params)
+    result = MealPrepSchedule::Creator.new.create_schedule!(meal_prep_schedule_params)
+    @meal_prep_schedule = result.schedule
 
-    if @meal_prep_schedule.save
+    if @meal_prep_schedule.present?
       redirect_to meal_prep_schedule_url(@meal_prep_schedule), notice: "Meal prep schedule was successfully created."
     else
       render :new, status: :unprocessable_entity
