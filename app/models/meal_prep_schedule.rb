@@ -1,0 +1,2 @@
+class MealPrepSchedule < ApplicationRecord
+end

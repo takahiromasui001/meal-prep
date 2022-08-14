@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Meal prep schedules</h1>
+
+<div id="meal_prep_schedules">
+  <% @meal_prep_schedules.each do |meal_prep_schedule| %>
+    <%= render meal_prep_schedule %>
+    <p>
+      <%= link_to "Show this meal prep schedule", meal_prep_schedule %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New meal prep schedule", new_meal_prep_schedule_path %>
