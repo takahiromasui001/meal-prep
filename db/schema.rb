@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_14_010805) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_14_011756) do
+  create_table "meal_prep_schedule_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "prepared", null: false
+    t.integer "meal_type", null: false
+    t.bigint "meal_prep_schedule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_prep_schedule_id"], name: "index_meal_prep_schedule_items_on_meal_prep_schedule_id"
+  end
+
   create_table "meal_prep_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "meal_prep_schedule_items", "meal_prep_schedules"
 end

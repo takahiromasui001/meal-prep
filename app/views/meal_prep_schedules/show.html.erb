@@ -5,6 +5,7 @@
 <div>
   <%= link_to "Edit this meal prep schedule", edit_meal_prep_schedule_path(@meal_prep_schedule) %> |
   <%= link_to "Back to meal prep schedules", meal_prep_schedules_path %>
+  <%= link_to "Show meal prep schedule items", meal_prep_schedule_items_path(meal_prep_schedule_id: @meal_prep_schedule.id) %>
 
   <%= button_to "Destroy this meal prep schedule", @meal_prep_schedule, method: :delete %>
 </div>
