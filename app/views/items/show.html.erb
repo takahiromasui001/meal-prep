@@ -4,7 +4,7 @@
 <div><%= @meal_prep_item.name %></div>
 
 <div>
-  <%= link_to "Edit this meal prep item", edit_meal_prep_schedule_item_path(@meal_prep_item) %> |
+  <%= link_to "Edit this meal prep item", edit_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_item.meal_prep_schedule, id: @meal_prep_item) %> |
   <%= link_to "Back to meal prep items", meal_prep_schedule_items_path %>
 
   <%= button_to "Destroy this meal prep item", @meal_prep_item, method: :delete, form: { data: { turbo_confirm: "削除しますか？" } } %>

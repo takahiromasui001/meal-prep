@@ -2,7 +2,8 @@ class ItemsController < ApplicationController
   before_action :set_meal_prep_item, only: %i[ show edit update destroy ]
 
   def index
-    @meal_prep_items = MealPrepSchedule::Item.all
+    schedule = MealPrepSchedule.find(params[:meal_prep_schedule_id])
+    @meal_prep_items = schedule.items.all
   end
 
   def show
@@ -27,7 +28,7 @@ class ItemsController < ApplicationController
 
   def update
     if @meal_prep_item.update(meal_prep_item_params)
-      redirect_to meal_prep_schedule_items_url(id: @meal_prep_item.id), notice: "Meal prep item was successfully updated."
+      redirect_to meal_prep_schedule_items_url(meal_prep_schedule_id: @meal_prep_item.meal_prep_schedule, id: @meal_prep_item), notice: "Meal prep item was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +43,8 @@ class ItemsController < ApplicationController
   private
 
   def set_meal_prep_item
-    @meal_prep_item = MealPrepSchedule::Item.find(params[:id])
+    schedule = MealPrepSchedule.find(params[:meal_prep_schedule_id])
+    @meal_prep_item = schedule.items.find(params[:id])
   end
 
   def meal_prep_item_params
