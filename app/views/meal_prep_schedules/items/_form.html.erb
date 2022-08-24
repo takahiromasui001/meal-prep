@@ -37,3 +37,10 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= 
+  button_to "Destroy this meal prep item",
+  meal_prep_schedule_item_path(meal_prep_schedule_id: meal_prep_item.meal_prep_schedule, id: meal_prep_item), 
+  method: :delete, 
+  form: { data: { turbo_confirm: "削除しますか？" } } 
+%>

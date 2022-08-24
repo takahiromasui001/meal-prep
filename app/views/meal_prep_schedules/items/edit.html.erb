@@ -5,6 +5,5 @@
 <br>
 
 <div>
-  <%= link_to "Show this meal prep item", @meal_prep_item %> |
-  <%= link_to "Back to meal prep items", meal_prep_schedule_items_path %>
+  <%= link_to "Back to schedule", meal_prep_schedule_path(id: @meal_prep_item.meal_prep_schedule) %>
 </div>

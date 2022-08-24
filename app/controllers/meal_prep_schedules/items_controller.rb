@@ -28,8 +28,8 @@ class MealPrepSchedules::ItemsController < ApplicationController
   end
 
   def update
-    if @meal_prep_item.update!(meal_prep_item_params)
-      redirect_to meal_prep_schedule_items_url(meal_prep_schedule_id: @meal_prep_item.meal_prep_schedule, id: @meal_prep_item), notice: "Meal prep item was successfully updated."
+    if @meal_prep_item.update(meal_prep_item_params)
+      redirect_to meal_prep_schedule_path(id: @meal_prep_item.meal_prep_schedule), notice: "Meal prep item was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class MealPrepSchedules::ItemsController < ApplicationController
   def destroy
     @meal_prep_item.destroy!
 
-    redirect_to meal_prep_schedule_items_url, notice: "Meal prep item was successfully destroyed."
+    redirect_to meal_prep_schedule_path(@meal_prep_item.meal_prep_schedule), notice: "Meal prep item was successfully destroyed."
   end
 
   private
