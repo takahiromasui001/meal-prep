@@ -10,7 +10,8 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @meal_prep_item = MealPrepSchedule::Item.new
+    schedule = MealPrepSchedule.find(params[:meal_prep_schedule_id])
+    @meal_prep_item = schedule.items.build
   end
 
   def edit
@@ -19,7 +20,7 @@ class ItemsController < ApplicationController
   def create
     @meal_prep_item = MealPrepSchedule::Item.new(meal_prep_item_params)
 
-    if @meal_prep_item.save
+    if @meal_prep_item.save!
       redirect_to meal_prep_schedule_item_url(id: @meal_prep_item.id), notice: "Meal prep item was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -27,7 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @meal_prep_item.update(meal_prep_item_params)
+    if @meal_prep_item.update!(meal_prep_item_params)
       redirect_to meal_prep_schedule_items_url(meal_prep_schedule_id: @meal_prep_item.meal_prep_schedule, id: @meal_prep_item), notice: "Meal prep item was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -35,7 +36,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @meal_prep_item.destroy
+    @meal_prep_item.destroy!
 
     redirect_to meal_prep_schedule_items_url, notice: "Meal prep item was successfully destroyed."
   end

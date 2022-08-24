@@ -1,6 +1,6 @@
 <h1>Editing meal prep item</h1>
 
-<%= render "form", meal_prep_item: @meal_prep_item %>
+<%= render "form", meal_prep_item: @meal_prep_item, url: meal_prep_schedule_item_url(meal_prep_schedule_id: @meal_prep_item.meal_prep_schedule, id: @meal_prep_item) %>
 
 <br>
 

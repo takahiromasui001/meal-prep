@@ -1,4 +1,4 @@
-<%= form_with(model: meal_prep_item, url: meal_prep_schedule_item_url(meal_prep_schedule_id: @meal_prep_item.meal_prep_schedule, id: @meal_prep_item)) do |form| %>
+<%= form_with(model: meal_prep_item, url: url) do |form| %>
   <% if meal_prep_item.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(meal_prep_item.errors.count, "error") %> prohibited this meal_prep_item from being saved:</h2>
