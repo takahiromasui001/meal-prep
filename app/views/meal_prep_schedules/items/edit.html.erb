@@ -1,9 +1,14 @@
 <h1>Editing meal prep item</h1>
 
-<%= render "form", meal_prep_item: @meal_prep_item, url: meal_prep_schedule_item_url(meal_prep_schedule_id: @meal_prep_item.meal_prep_schedule, id: @meal_prep_item) %>
-
+<%= render "form", meal_prep_item: @meal_prep_item, url: meal_prep_schedule_item_url(meal_prep_schedule_id: @meal_prep_item.schedule, id: @meal_prep_item) %>
+<%= 
+  button_to "Destroy this meal prep item",
+  meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_item.schedule, id: @meal_prep_item), 
+  method: :delete, 
+  form: { data: { turbo_confirm: "削除しますか？" } } 
+%>
 <br>
 
 <div>
-  <%= link_to "Back to schedule", meal_prep_schedule_path(id: @meal_prep_item.meal_prep_schedule) %>
+  <%= link_to "Back to schedule", meal_prep_schedule_path(id: @meal_prep_item.schedule) %>
 </div>
