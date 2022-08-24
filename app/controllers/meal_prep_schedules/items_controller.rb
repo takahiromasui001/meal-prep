@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class MealPrepSchedules::ItemsController < ApplicationController
   before_action :set_meal_prep_item, only: %i[ show edit update destroy ]
 
   def index

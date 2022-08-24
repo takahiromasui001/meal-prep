@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'meal_prep_schedules#index'
   resources :meal_prep_schedules do
-    resources :items
+    resources :items, controller: 'meal_prep_schedules/items'
   end
 end
