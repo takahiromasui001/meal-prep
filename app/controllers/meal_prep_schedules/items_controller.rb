@@ -1,13 +1,5 @@
 class MealPrepSchedules::ItemsController < ApplicationController
-  before_action :set_meal_prep_item, only: %i[ show edit update destroy ]
-
-  def index
-    schedule = MealPrepSchedule.find(params[:meal_prep_schedule_id])
-    @meal_prep_items = schedule.items.all
-  end
-
-  def show
-  end
+  before_action :set_meal_prep_item, only: %i[ edit update destroy ]
 
   def new
     schedule = MealPrepSchedule.find(params[:meal_prep_schedule_id])
