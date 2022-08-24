@@ -21,7 +21,7 @@ class MealPrepSchedules::ItemsController < ApplicationController
     @meal_prep_item = MealPrepSchedule::Item.new(meal_prep_item_params)
 
     if @meal_prep_item.save!
-      redirect_to meal_prep_schedule_item_url(id: @meal_prep_item.id), notice: "Meal prep item was successfully created."
+      redirect_to meal_prep_schedule_path(id: @meal_prep_item.schedule), notice: "Meal prep item was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
