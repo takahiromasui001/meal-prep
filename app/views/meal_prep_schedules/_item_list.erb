@@ -1,0 +1,7 @@
+<h2>Item List</h2>
+<% items.each do |item| %>
+  <div>
+    <%= link_to item.name, edit_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_schedule, id: item) %>
+    <%= item.prepared_label %>
+  </div>
+<% end %>

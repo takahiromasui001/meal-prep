@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @meal_prep_schedule %>
+
+<section>
+  <h2>Schedule Status</h2>
+  <%= @meal_prep_schedule.schedule_status %>
+</section>
+
+<%= render 'item_list', items: @meal_prep_schedule.items %>
+<%= link_to "New meal prep item", new_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_schedule) %>
+
+<div>
+  <%= link_to "Edit this meal prep schedule", edit_meal_prep_schedule_path(@meal_prep_schedule) %> |
+  <%= link_to "Back to meal prep schedules", meal_prep_schedules_path %>
+
+  <%= button_to "Destroy this meal prep schedule", @meal_prep_schedule, method: :delete, form: { data: { turbo_confirm: "削除しますか？" } } %>
+</div>

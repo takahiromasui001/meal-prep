@@ -1,0 +1,9 @@
+<h1>New meal prep item</h1>
+
+<%= render "form", meal_prep_item: @meal_prep_item, url: meal_prep_schedule_items_path(meal_prep_schedule_id: @meal_prep_item.schedule) %>
+
+<br>
+
+<div>
+  <%= link_to "Back to schedule", meal_prep_schedule_path(id: @meal_prep_item.schedule) %>
+</div>

@@ -1,25 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+meal-prep は作り置き管理用のアプリケーションです。
 
-Things you may want to cover:
+とりあえずのユースケース
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# meal-prep
+- その週にどれだけ作り置きをする必要があるか？
+- 今どれだけ作り置きができているか？
+- 作り置きをどれだけ消化したか？
