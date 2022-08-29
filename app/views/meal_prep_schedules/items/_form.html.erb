@@ -29,7 +29,12 @@
   </div>
 
   <div>
-    <%= form.label :meal_prep_schedule_id, style: "display: block" %>
+    <%= form.label :consumption_rate, '消化率' %>
+    <%= form.number_field :consumption_rate %>
+  </div>
+
+  <div>
+    <%= form.label :meal_prep_schedule_id %>
     <%= form.number_field :meal_prep_schedule_id %>
   </div>
 
