@@ -16,7 +16,7 @@ class MealPrepSchedulesController < ApplicationController
   end
 
   def create
-    result = MealPrepSchedule::Creator.new.create_schedule!(meal_prep_schedule_params)
+    result = MealPrepSchedule::Creator.new.create_schedule!(meal_prep_schedule_params, meal_prep_schedule_item_initial_count_params)
     @meal_prep_schedule = result.schedule
 
     if @meal_prep_schedule.present?
@@ -48,5 +48,9 @@ class MealPrepSchedulesController < ApplicationController
 
   def meal_prep_schedule_params
     params.require(:meal_prep_schedule).permit(:name)
+  end
+
+  def meal_prep_schedule_item_initial_count_params
+    params.require(:meal_prep_schedule).permit(:main_count, :side_count)
   end
 end
