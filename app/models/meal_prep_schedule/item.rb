@@ -6,6 +6,9 @@ class MealPrepSchedule::Item < ApplicationRecord
 
   enum :meal_type, { main: 0, side: 1 }
 
+  scope :prepared, -> { where(prepared: true).where.not(consumption_rate: 100) }
+  scope :consumed, -> { where(consumption_rate: 100) }
+
   def consumption_rate_can_not_update_in_unprepared_item
     if prepared.blank? && consumption_rate != 0
       errors.add(:consumption_rate, 'cannot be update when item is not prepared')

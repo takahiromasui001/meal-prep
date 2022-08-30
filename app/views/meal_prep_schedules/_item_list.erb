@@ -1,7 +1,28 @@
 <h2>Item List</h2>
-<% items.each do |item| %>
-  <div>
-    <%= link_to item.name, edit_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_schedule, id: item) %>
-    <%= item.prepared_label %>
-  </div>
-<% end %>
+<h4>準備済み</h4>
+<section>
+  <% items.prepared.each do |item| %>
+    <div>
+      <%= link_to item.name, edit_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_schedule, id: item) %>
+      <%= "消化率: #{item.consumption_rate}%" %>
+    </div>
+  <% end %>
+</section>
+
+<h4>準備待ち</h4>
+<section>
+  <% items.where(prepared: false).each do |item| %>
+    <div>
+      <%= link_to item.name, edit_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_schedule, id: item) %>
+    </div>
+  <% end %>
+</section>
+
+<h4>消化済み</h4>
+<section>
+  <% items.consumed.each do |item| %>
+    <div>
+      <%= link_to item.name, edit_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_schedule, id: item) %>
+    </div>
+  <% end %>
+</section>
