@@ -47,7 +47,7 @@ class MealPrepSchedulesController < ApplicationController
   end
 
   def meal_prep_schedule_params
-    params.require(:meal_prep_schedule).permit(:name)
+    params.require(:meal_prep_schedule).permit(:name, :memo)
   end
 
   def meal_prep_schedule_item_initial_count_params

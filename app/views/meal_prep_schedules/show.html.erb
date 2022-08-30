@@ -8,6 +8,11 @@
 </section>
 
 <%= render 'item_list', items: @meal_prep_schedule.items %>
+<section>
+  <h2>Memo</h2>
+  <%= @meal_prep_schedule.memo %>
+</section>
+
 <%= link_to "New meal prep item", new_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_schedule) %>
 
 <div>

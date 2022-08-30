@@ -16,14 +16,21 @@
     <%= form.text_field :name %>
   </div>
 
-  <div>
-    <%= form.label :main_count, style: "display: block" %>
-    <%= form.text_field :main_count, value: MealPrepSchedule::Creator::INITIAL_MAIN_COUNT %>
-  </div>
+  <% unless meal_prep_schedule.persisted? %>
+    <div>
+      <%= form.label :main_count, style: "display: block" %>
+      <%= form.text_field :main_count, value: MealPrepSchedule::Creator::INITIAL_MAIN_COUNT %>
+    </div>
+  
+    <div>
+      <%= form.label :side_count, style: "display: block" %>
+      <%= form.text_field :side_count, value: MealPrepSchedule::Creator::INITIAL_SIDE_COUNT %>
+    </div>
+  <% end %>
 
   <div>
-    <%= form.label :side_count, style: "display: block" %>
-    <%= form.text_field :side_count, value: MealPrepSchedule::Creator::INITIAL_SIDE_COUNT %>
+    <%= form.label :memo, style: "display: block" %>
+    <%= form.text_area :memo %>
   </div>
 
   <div>
