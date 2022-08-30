@@ -1,25 +1,14 @@
 class MealPrepSchedule::Creator
-  INITAL_ITEM_PARAMS = [
-    { name: '主菜1', meal_type: :main },
-    { name: '主菜2', meal_type: :main },
-    { name: '主菜3', meal_type: :main },
-    { name: '主菜4', meal_type: :main },
-    { name: '副菜1', meal_type: :side },
-    { name: '副菜2', meal_type: :side },
-    { name: '副菜3', meal_type: :side },
-    { name: '副菜4', meal_type: :side },
-    { name: '副菜5', meal_type: :side },
-    { name: '副菜6', meal_type: :side },
-    { name: '副菜7', meal_type: :side },
-  ].freeze
+  INITIAL_MAIN_COUNT = 4
+  INITIAL_SIDE_COUNT = 7
 
-  def create_schedule!(meal_prep_schedule_params)
+  def create_schedule!(meal_prep_schedule_params, initial_count_params)
     meal_prep_schedule = MealPrepSchedule.new(meal_prep_schedule_params)
 
     ActiveRecord::Base.transaction do
       result = meal_prep_schedule.save!
 
-      INITAL_ITEM_PARAMS.each do |item_param|
+      create_initial_item_params(initial_count_params).each do |item_param|
         meal_prep_schedule.items.create!(item_param)
       end
     end
@@ -27,6 +16,16 @@ class MealPrepSchedule::Creator
     Result.new(schedule: meal_prep_schedule)
   rescue
     Result.new(succeeded: false)
+  end
+
+  def create_initial_item_params(initial_count_params)
+    initial_count_hash = initial_count_params.to_h.map {|k, v| [k.to_sym, v.to_i]}.to_h
+    main_count = initial_count_hash[:main_count]
+    side_count = initial_count_hash[:side_count]
+
+    main_params = (1..main_count).map { |i| { name: "主菜#{i}", meal_type: :main } }
+    side_params = (1..side_count).map { |i| { name: "副菜#{i}", meal_type: :side } }
+    main_params + side_params
   end
 
   class Result
