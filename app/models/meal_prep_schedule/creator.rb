@@ -1,4 +1,7 @@
 class MealPrepSchedule::Creator
+  INITIAL_MAIN_COUNT = 4
+  INITIAL_SIDE_COUNT = 7
+
   def create_schedule!(meal_prep_schedule_params, initial_count_params)
     meal_prep_schedule = MealPrepSchedule.new(meal_prep_schedule_params)
 

@@ -18,12 +18,12 @@
 
   <div>
     <%= form.label :main_count, style: "display: block" %>
-    <%= form.text_field :main_count %>
+    <%= form.text_field :main_count, value: MealPrepSchedule::Creator::INITIAL_MAIN_COUNT %>
   </div>
 
   <div>
     <%= form.label :side_count, style: "display: block" %>
-    <%= form.text_field :side_count %>
+    <%= form.text_field :side_count, value: MealPrepSchedule::Creator::INITIAL_SIDE_COUNT %>
   </div>
 
   <div>
