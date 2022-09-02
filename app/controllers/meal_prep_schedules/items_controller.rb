@@ -43,6 +43,6 @@ class MealPrepSchedules::ItemsController < ApplicationController
   end
 
   def meal_prep_item_params
-    params.require(:meal_prep_schedule_item).permit(:name, :prepared, :meal_type, :consumption_rate, :meal_prep_schedule_id)
+    params.require(:meal_prep_schedule_item).permit(:name, :prepared, :meal_type, :remaining_rate, :meal_prep_schedule_id)
   end
 end
