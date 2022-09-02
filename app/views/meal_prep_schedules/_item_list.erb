@@ -3,6 +3,7 @@
 <section>
   <% items.prepared.each do |item| %>
     <div>
+      <%= item.meal_type %>
       <%= link_to item.name, edit_meal_prep_schedule_item_path(meal_prep_schedule_id: @meal_prep_schedule, id: item) %>
       <%= "消化率: #{item.consumption_rate}%" %>
     </div>
