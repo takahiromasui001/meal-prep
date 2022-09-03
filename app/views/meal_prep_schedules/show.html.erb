@@ -5,6 +5,7 @@
 <section>
   <h2>Schedule Status</h2>
   <%= @meal_prep_schedule.schedule_status %>
+  <%= "作り置き消化予測日数: #{MealPrepSchedule::Forcaster.new.consumption_days_forecast(@meal_prep_schedule)}日" %>
 </section>
 
 <%= render 'item_list', items: @meal_prep_schedule.items %>
