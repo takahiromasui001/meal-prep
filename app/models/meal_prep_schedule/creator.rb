@@ -1,22 +1,31 @@
 class MealPrepSchedule::Creator
+  INITIAL_MAIN_COUNT = 4
+  INITIAL_SIDE_COUNT = 7
+
   def create_schedule!(meal_prep_schedule_params, initial_count_params, base_item_schedule_id = nil)
     meal_prep_schedule = MealPrepSchedule.new(meal_prep_schedule_params)
 
     ActiveRecord::Base.transaction do
-      new_schedule = meal_prep_schedule.save!
+      meal_prep_schedule.save!
 
-      # 引き継ぎアイテムの作成
-      # new_schedule.hand_over_meal_prep_schedule_items!(base_schedule_id)
-      # Handover.hand_over_items!(new_schedule, base_schedule_id)
-
-      base_schedule = MealPrepSchedule.find(1)
-      base_schedule.items.prepared.map(&:dup).each do |item| {
-        item.meal_prep_schedule_id = new_schedule.id
-        item.save!
-      }
+      if base_item_schedule_id.present?
+        base_schedule = MealPrepSchedule.find(base_item_schedule_id)
+        base_schedule.items.prepared.map(&:dup).each do |item|
+          item.meal_prep_schedule_id = meal_prep_schedule.id
+          item.save!
+        end
+      end
 
       # meal pointから残りの要作成アイテムを計算
-      create_initial_item_params(initial_count_params).each do |item_param|
+      created_main_count = meal_prep_schedule.items.main.size
+      created_side_count = meal_prep_schedule.items.side.size
+
+      initial_count_params_2 = {
+        main_count: initial_count_params[:main_count].to_i - created_main_count,
+        side_count: initial_count_params[:side_count].to_i - created_side_count
+      }
+
+      create_initial_item_params(initial_count_params_2).each do |item_param|
         meal_prep_schedule.items.create!(item_param)
       end
     end
