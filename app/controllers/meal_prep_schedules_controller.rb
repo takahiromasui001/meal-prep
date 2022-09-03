@@ -16,7 +16,11 @@ class MealPrepSchedulesController < ApplicationController
   end
 
   def create
-    result = MealPrepSchedule::Creator.new.create_schedule!(meal_prep_schedule_params, meal_prep_schedule_item_initial_count_params)
+    result = MealPrepSchedule::Creator.new.create_schedule!(
+      meal_prep_schedule_params, 
+      meal_prep_schedule_item_initial_count_params,
+      params[:meal_prep_schedule][:base_item_schedule_id]
+    )
     @meal_prep_schedule = result.schedule
 
     if @meal_prep_schedule.present?

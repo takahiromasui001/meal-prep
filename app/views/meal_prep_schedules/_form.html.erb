@@ -26,6 +26,11 @@
       <%= form.label :side_count, style: "display: block" %>
       <%= form.text_field :side_count, value: MealPrepSchedule::Creator::INITIAL_SIDE_COUNT %>
     </div>
+
+    <div>
+      <%= form.label :base_item_schedule_id, style: "display: block" %>
+      <%= form.text_field :base_item_schedule_id %>
+    </div>
   <% end %>
 
   <div>
