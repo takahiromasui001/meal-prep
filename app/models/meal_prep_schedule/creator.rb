@@ -16,13 +16,13 @@ class MealPrepSchedule::Creator
         end
       end
 
-      # meal pointから残りの要作成アイテムを計算
-      created_main_count = meal_prep_schedule.items.main.size
-      created_side_count = meal_prep_schedule.items.side.size
+      # meal pointから残りの要作成アイテムを計算(小数点切り捨て)
+      created_main_meal_point = meal_prep_schedule.items.main.sum(:remaining_rate) / 100
+      created_side_meal_point = meal_prep_schedule.items.side.sum(:remaining_rate) / 100
 
       initial_count_params_2 = {
-        main_count: initial_count_params[:main_count].to_i - created_main_count,
-        side_count: initial_count_params[:side_count].to_i - created_side_count
+        main_count: initial_count_params[:main_count].to_i - created_main_meal_point,
+        side_count: initial_count_params[:side_count].to_i - created_side_meal_point
       }
 
       create_initial_item_params(initial_count_params_2).each do |item_param|
