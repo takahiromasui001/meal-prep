@@ -14,4 +14,8 @@ class MealPrepSchedule::Item < ApplicationRecord
       errors.add(:remaining_rate, 'cannot be update when item is not prepared')
     end
   end
+
+  def meal_point
+    remaining_rate.to_f / 100
+  end
 end
