@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe MealPrepSchedule::Creator, type: :model do
   describe '#create_schedule!' do
     let(:meal_prep_schedule_params) { { name: 'スケジュール1'} }
-    let(:initial_count_params) { { main_count: 4, side_count: 7 } }
+    let(:initial_count_params) { { main: 4, side: 7 } }
 
     it '作り置きスケジュール作成と同時に、アイテムも作成されること' do
       schedule = MealPrepSchedule::Creator.new.create_schedule!(meal_prep_schedule_params, initial_count_params).schedule
